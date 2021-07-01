@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HousePricing</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="app.css">
+	<link rel = "stylesheet" href="style.css"> 
+	<style>
+		.cont {
+			/* text-align: center; */
+			margin-top: ;
+			padding-top: 20px;
+			position: relative;
+		}
+		figure > img {
+			width: 80%;
+			height: 80%;
+			margin: 6px;
+			padding: 40px;
+		}
+		.stats > figure {
+			text-align: center;
+			{% comment %} background-color: grey; {% endcomment %}
+			border-radius: 20px;
+			{% comment %} width: 70%;
+			height: 100%; {% endcomment %}
+			{% comment %} padding: 4px;  {% endcomment %}
+			box-shadow: 3px 3px 8px 8px grey;
+		}
+		figcaption {
+			font-family: cursive;
+			font-weight:bold;
+			{% comment %} text-align: left; {% endcomment %}
+			padding-left: 15px;
+			color: black;
+			font-size: 1.5rem;
+			margin-bottom: 20px;
+		}
+ 		.stats {
+			margin-left:30px;
+			margin-top: 2rem;
+			margin-bottom: 3rem;
+			display: grid;
+			grid-template-columns: 100%;
+			grid-column-gap: 10px;
+			grid-row-gap: 80px;
+				
+		}
+		.stats > img : hover {
+			cursor:pointer;
+			box-shadow: 3px 3px 4px 4px grey;
+		}
+		.cont::after {
+			content: "";
+			background: url("backimage.jpg");
+			opacity: 0.8;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			position: absolute;
+			z-index: -1;
+  		}
+		.btm {
+			width: 100px;
+			height: 100px;
+			margin-bottom: 200px;
+		}
+
+		.pcgn > img{
+		     width: 45%;		}
+
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="front.htm">HousePricing</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" href="#statistics">Statistics</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#prd">Predictor</a>
+			</li>
+				<li class="nav-item">
+				<a class="nav-link" href="#gp1">BHK's</a>
+			</li>
+				<li class="nav-item">
+				<a class="nav-link" href="#gp2">Top 10 demanding area</a>
+			</li>
+				<li class="nav-item">
+				<a class="nav-link" href="#gp3">Top 10 costly area</a>
+			</li>
+				<li class="nav-item">
+				<a class="nav-link" href="#gp4">avg BHK's Value</a>
+			</li>
+			</ul>
+	    </div>
+    </nav>
+	<div class = "cont">
+		<form class="form" id = "prd">
+			<h2>Area (Square Feet)</h2>
+			<input class="area"  type="text" id="uiSqft" class="floatLabel" name="Squareft" placeholder="Default 1000">
+			<h2>BHK</h2>
+			<div class="switch-field">
+				<input type="radio" id="radio-bhk-1" name="uiBHK" value="1"/>
+				<label for="radio-bhk-1">1</label>
+				<input type="radio" id="radio-bhk-2" name="uiBHK" value="2" checked/>
+				<label for="radio-bhk-2">2</label>
+				<input type="radio" id="radio-bhk-3" name="uiBHK" value="3"/>
+				<label for="radio-bhk-3">3</label>
+				<input type="radio" id="radio-bhk-4" name="uiBHK" value="4"/>
+				<label for="radio-bhk-4">4</label>
+				<input type="radio" id="radio-bhk-5" name="uiBHK" value="5"/>
+				<label for="radio-bhk-5">5</label>
+			</div>
+		</form>
+		<div class="form">
+			<h2>Bath</h2>
+			<div class="switch-field">
+				<input type="radio" id="radio-bath-1" name="uiBathrooms" value="1"/>
+				<label for="radio-bath-1">1</label>
+				<input type="radio" id="radio-bath-2" name="uiBathrooms" value="2" checked/>
+				<label for="radio-bath-2">2</label>
+				<input type="radio" id="radio-bath-3" name="uiBathrooms" value="3"/>
+				<label for="radio-bath-3">3</label>
+				<input type="radio" id="radio-bath-4" name="uiBathrooms" value="4"/>
+				<label for="radio-bath-4">4</label>
+				<input type="radio" id="radio-bath-5" name="uiBathrooms" value="5"/>
+				<label for="radio-bath-5">5</label>
+			</div>
+			<h2>Location</h2>
+			<select class="location" name="" id="uiLocations">
+				<option value="" disabled="disabled" selected="selected" required>Choose a Location</option>
+					<option>Electronic City</option>
+					<option>Rajaji Nagar</option>
+			</select>
+			<button class="submit" onclick="onClickedEstimatePrice()" type="button">Estimate Price</button>
+			<div id="uiEstimatedPrice" class="result">	<h2></h2> </div>
+		</div>
+
+
+
+		<hr style="height:2px;width:70% ;color:yellow;background-color:yellow">
+
+
+		<div id = "statistics" class = "stats">
+			<figure id="gp1" class="pcgn">
+  				<img src="gp1.jpeg">
+  				<figcaption>Fig.1 - Here we have taken 5 types of BHK and shown their percentage with respect to their No. of BHk's 
+For Ex.The percentage of 2 BHK's is 43.39% </figcaption>
+			</figure >
+			<figure id="gp2">
+  				<img src="gp2.jpeg">
+  				<figcaption>Fig.2 - Here we have plotted graph of top 10 location with respect to customer choice(highest urban locality).
+For Ex.Whitefield has huge demand(locations) to buy house among the new customers</figcaption>
+			</figure>
+			<figure id="gp3">
+  				<img src="gp3.jpeg">
+  				<figcaption>Fig.3 - Here we have plotted graph of top 10 location with respect to highest price paid by customer. 
+For Ex.Defence Colony have maximum price to buy a house.</figcaption>
+			</figure>
+			<figure id="gp4">
+  				<img src="gp4.jpeg">
+  				<figcaption>Fig.4 - Here we have display the average price of BHK's.
+For Ex.2 BHK have average price of 59.54 lakhs.    </figcaption>
+			</figure>
+		</div>
+		<div class = "btm"></div>
+	</div>
+	<script src="app.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
